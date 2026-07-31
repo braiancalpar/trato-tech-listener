@@ -1,10 +1,10 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { buscarCategorias } from "store/reducers/categorias";
+import { carregarCategorias } from "store/reducers/categorias";
 
 export const listener = createListenerMiddleware();
 
 listener.startListening({
-  actionCreator: buscarCategorias.pending,
+  actionCreator: carregarCategorias,
   effect: async (action) => {
     console.log('buscando categorias:', action);
   }
