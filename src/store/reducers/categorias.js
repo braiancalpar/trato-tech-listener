@@ -17,6 +17,11 @@ export const buscarCategorias = createAsyncThunk(
 const categoriasSlice = createSlice({
   name: "categorias",
   initialState,
+  reducers: {
+    adicionarTodasAsCategorias: (state, { payload }) => {
+      return payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(buscarCategorias.fulfilled, (state, { payload }) => {
@@ -58,5 +63,7 @@ const categoriasSlice = createSlice({
       });
   },
 });
+
+export const { adicionarTodasAsCategorias } = categoriasSlice.actions;
 
 export default categoriasSlice.reducer;
