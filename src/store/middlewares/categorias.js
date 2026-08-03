@@ -8,15 +8,15 @@ import {
 } from "store/reducers/categorias";
 import criarTarefa from "./utils/criarTarefa";
 
-export const listener = createListenerMiddleware();
+export const categoriasListener = createListenerMiddleware();
 
-listener.startListening({
+categoriasListener.startListening({
   actionCreator: carregarCategorias,
   effect: async (action, { dispatch, fork, unsubscribe }) => {
     const resposta = await criarTarefa({
       fork,
       dispatch,
-      action: adicionarUmaCategoria,
+      action: adicionarTodasAsCategorias,
       busca: categoriasService.buscar,
       textoCarregando: "Carregando categorias",
       textoSucesso: "Categorias carregadas com sucesso!",
@@ -28,7 +28,7 @@ listener.startListening({
   },
 });
 
-listener.startListening({
+categoriasListener.startListening({
   actionCreator: carregarUmaCategoria,
   effect: async (action, { dispatch, fork, getState, unsubscribe }) => {
     const { categorias } = getState();
@@ -43,7 +43,7 @@ listener.startListening({
     await criarTarefa({
       fork,
       dispatch,
-      action: adicionarTodasAsCategorias,
+      action: adicionarUmaCategoria,
       busca: () => categoriasService.buscarUmaCategoria(nomeCategoria),
       textoCarregando: `Carregando categoria ${nomeCategoria}`,
       textoSucesso: `Categoria ${nomeCategoria} carregada com sucesso!`,
