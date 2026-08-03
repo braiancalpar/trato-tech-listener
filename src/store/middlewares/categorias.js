@@ -4,6 +4,7 @@ import categoriasService from "services/categorias";
 import {
   adicionarTodasAsCategorias,
   carregarCategorias,
+  carregarUmaCategoria,
 } from "store/reducers/categorias";
 
 export const listener = createListenerMiddleware();
@@ -47,5 +48,12 @@ listener.startListening({
         isClosable: true,
       });
     }
+  },
+});
+
+listener.startListening({
+  actionCreator: carregarUmaCategoria,
+  effect: async () => {
+    console.log("carregar apenas uma categoria");
   },
 });
