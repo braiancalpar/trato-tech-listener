@@ -16,7 +16,7 @@ categoriasListener.startListening({
     const resposta = await criarTarefa({
       fork,
       dispatch,
-      action: adicionarUmaCategoria,
+      action: adicionarTodasAsCategorias,
       busca: categoriasService.buscar,
       textoCarregando: "Carregando categorias",
       textoSucesso: "Categorias carregadas com sucesso!",
@@ -43,7 +43,7 @@ categoriasListener.startListening({
     await criarTarefa({
       fork,
       dispatch,
-      action: adicionarTodasAsCategorias,
+      action: adicionarUmaCategoria,
       busca: () => categoriasService.buscarUmaCategoria(nomeCategoria),
       textoCarregando: `Carregando categoria ${nomeCategoria}`,
       textoSucesso: `Categoria ${nomeCategoria} carregada com sucesso!`,
